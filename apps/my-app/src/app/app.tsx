@@ -1,11 +1,11 @@
 import React from "react";
-import NxWelcome from "./nx-welcome";
-import { LibOne } from "@my-nx-app/lib-one";
-import MyButton from "./button";
-import useLocalStorage from "./useLocalStorage";
-import UserList from "./UserList";
+//import { LibOne } from "@my-nx-app/lib-one";
+//import MyButton from "./button";
+//import useLocalStorage from "./useLocalStorage";
+//import UserList from "./UserList";
 import EmployeeList from "./UserList";
 import { EmployeeProvider } from "./EmployeeContext";
+import {ToastContainer} from 'react-toastify';
 
 export function App() {
   // Using custom hook to store counter in localStorage
@@ -16,6 +16,7 @@ export function App() {
      
       <EmployeeProvider>
       <div>
+        <ToastContainer position="top-right" autoClose={3000} />
         <h1>Employee Management System</h1>
         <EmployeeList />
       </div>

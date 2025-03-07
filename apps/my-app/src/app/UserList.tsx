@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import { EmployeeContext } from "./EmployeeContext";
-
+import {toast} from 'react-toastify';
 const EmployeeList: React.FC = () => {
   const employeeContext = useContext(EmployeeContext);
 
@@ -23,7 +23,7 @@ const EmployeeList: React.FC = () => {
         {employees.map((emp) => (
           <li key={emp.id}>
             {emp.name} - {emp.email}{" "}
-            <button onClick={() => deleteEmployee(emp.id)}>🗑️ Delete</button>
+            <button onClick={() => deleteEmployee(emp.id)}><span>🗑️</span> Delete</button>
             <button
               onClick={() => {
                 const updatedName = prompt("Enter updated name:", emp.name);
@@ -31,11 +31,11 @@ const EmployeeList: React.FC = () => {
                 if (updatedName && updatedEmail && validateEmail(updatedEmail)) {
                   updateEmployee(emp.id, updatedName, updatedEmail);
                 } else {
-                  alert("Invalid Email Format!");
+                 alert("Invalid Email Format!");
                 }
               }}
             >
-              ✏️ Edit
+              <span>✏️</span> Edit
             </button>
           </li>
         ))}
@@ -55,7 +55,7 @@ const EmployeeList: React.FC = () => {
           setNewEmail("");
         }}
       >
-        🆕 Add Employee
+        <span>🆕</span> Add Employee
       </button>
     </div>
   );
