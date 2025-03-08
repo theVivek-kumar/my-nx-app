@@ -16,7 +16,7 @@ export function App() {
      
       <EmployeeProvider>
       <div>
-        <ToastContainer position="top-right" autoClose={3000} />
+        <ToastContainer aria-label = 'Notification contaner' position="top-right" autoClose={3000} />
         <h1>Employee Management System</h1>
         <EmployeeList />
       </div>

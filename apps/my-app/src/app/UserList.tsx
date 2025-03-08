@@ -3,15 +3,13 @@ import { EmployeeContext } from "./EmployeeContext";
 import {toast} from 'react-toastify';
 const EmployeeList: React.FC = () => {
   const employeeContext = useContext(EmployeeContext);
-
+  const [newName, setNewName] = useState("");
+  const [newEmail, setNewEmail] = useState("");
   if (!employeeContext) {
     return <p>Loading...</p>;
   }
 
-  const { employees, addEmployee, updateEmployee, deleteEmployee } = employeeContext;
-
-  const [newName, setNewName] = useState("");
-  const [newEmail, setNewEmail] = useState("");
+  const { employees, addEmployee, updateEmployee, deleteEmployee ,resetEmployees} = employeeContext;
 
   // Validate Email Format
   const validateEmail = (email: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
@@ -23,7 +21,7 @@ const EmployeeList: React.FC = () => {
         {employees.map((emp) => (
           <li key={emp.id}>
             {emp.name} - {emp.email}{" "}
-            <button onClick={() => deleteEmployee(emp.id)}><span>🗑️</span> Delete</button>
+            <button onClick={() => deleteEmployee(emp.id)}><span role="img" aria-label="success">🗑️</span> Delete</button>
             <button
               onClick={() => {
                 const updatedName = prompt("Enter updated name:", emp.name);
@@ -35,7 +33,7 @@ const EmployeeList: React.FC = () => {
                 }
               }}
             >
-              <span>✏️</span> Edit
+              <span role="img" aria-label="success">✏️</span> Edit
             </button>
           </li>
         ))}
@@ -47,7 +45,7 @@ const EmployeeList: React.FC = () => {
       <button
         onClick={() => {
           if (!validateEmail(newEmail)) {
-            alert("Invalid Email Format!");
+            toast.success("Invalid Email Format!");
             return;
           }
           addEmployee(newName, newEmail);
@@ -55,8 +53,13 @@ const EmployeeList: React.FC = () => {
           setNewEmail("");
         }}
       >
-        <span>🆕</span> Add Employee
+        <span role="img" aria-label="success">🆕</span> Add Employee
       </button>
+      <div>
+      <button onClick={resetEmployees} style={{ marginTop: "10px", padding: "5px 10px", background: "red", color: "white", border: "none", cursor: "pointer" }}>
+        Reset Data
+      </button>
+      </div>
     </div>
   );
 };
