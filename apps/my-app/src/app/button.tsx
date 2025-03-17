@@ -1,21 +1,11 @@
 import React from "react";
 import { Button } from "antd";
 
-//const MyButton = ({ label, onClick, disabled }) => {
-    /*return (
-      <Button type="primary" onClick={onClick} disabled={disabled}>
-        {label}
-      </Button>
-    );
-  };
-  */
-  
-
 interface MyButtonProps {
   label: string;
   onClick: () => void;
   disabled?: boolean;
-  variant?: "primary" | "default" | "dashed" | "text" | "link" ;
+  variant?: "primary" | "default" | "dashed" | "text" | "link";
 }
 
 const MyButton: React.FC<MyButtonProps> = ({ label, onClick, disabled = false, variant = "primary" }) => {
@@ -26,4 +16,16 @@ const MyButton: React.FC<MyButtonProps> = ({ label, onClick, disabled = false, v
   );
 };
 
-export default MyButton;
+const ButtonVariants: React.FC = () => {
+  return (
+    <div style={{ display: "flex", gap: "10px", flexWrap: "wrap" }}>
+      <MyButton label="Primary Button" onClick={() => console.log("Primary Clicked")} variant="primary" />
+      <MyButton label="Default Button" onClick={() => console.log("Default Clicked")} variant="default" />
+      <MyButton label="Dashed Button" onClick={() => console.log("Dashed Clicked")} variant="dashed" />
+      <MyButton label="Text Button" onClick={() => console.log("Text Clicked")} variant="text" />
+      <MyButton label="Link Button" onClick={() => console.log("Link Clicked")} variant="link" />
+    </div>
+  );
+};
+
+export default ButtonVariants;

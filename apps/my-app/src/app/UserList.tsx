@@ -45,7 +45,7 @@ const EmployeeList: React.FC = () => {
       <button
         onClick={() => {
           if (!validateEmail(newEmail)) {
-            toast.success("Invalid Email Format!");
+            alert("Invalid Email Format!");
             return;
           }
           addEmployee(newName, newEmail);

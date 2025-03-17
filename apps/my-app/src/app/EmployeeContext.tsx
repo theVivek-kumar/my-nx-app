@@ -34,6 +34,7 @@ export const EmployeeProvider: React.FC<{ children: ReactNode }> = ({ children }
         if (!data.length) {
           throw new Error("No employee data received from API");
         }
+        // Correctly map the API response to the Employee interface
         const formattedData = data.map((user: any) => ({
           id: user.id,
           name: user.name,
@@ -99,7 +100,6 @@ export const EmployeeProvider: React.FC<{ children: ReactNode }> = ({ children }
     <EmployeeContext.Provider value={{ employees, addEmployee, updateEmployee, deleteEmployee, resetEmployees }}>
       {error && <p style={{ color: "red" }}>{error}</p>}
       {children}
-     
     </EmployeeContext.Provider>
   );
 };
